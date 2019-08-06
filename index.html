@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+
+<body>
+<div id="aniTags"></div>
+
+<form>
+<label>Animals you like!</label>	
+<input type="text" id="aniname">
+<button id="submit">submit</button>
+
+</form>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	
+var animals = ['birds','bears','dogs'];
+function renderButtons(){
+
+	$('#aniTags').empty();
+	for(var i=0; i<animals.length; i++){
+		var a = $('<button>');
+		a.addClass('animals');
+		a.attr('data-name',animals[i]);
+		a.text(animals[i]);
+		$('#aniTags').append(a);
+	}
+}
+
+$('#submit').on('click',function(event){
+
+	event.preventDefault();
+    var animal = $('#aniname').val().trim();
+    animals.push(animal);
+    renderButtons();
+})
+
+
+renderButtons();
+
+</script>
+
+</body>
+
+</html>
