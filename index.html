@@ -39,8 +39,11 @@
       console.log(response);
       for (var i=0; i<response.data.length; i++){
           var img = $('<img>'); //<img>
-          img.attr('src', response.data[i].images.downsized_large.url);
-          // <img src="">
+          img.attr('src', response.data[i].images.fixed_height_still.url);
+          img.addClass("gifs");
+          img.attr("data-state","still");
+          img.attr("data-still",response.data[i].images.fixed_height_still.url);
+          img.attr("data-animate",response.data[i].images.fixed_height.url);
 
           $('#images').append(img);
       }
@@ -58,7 +61,7 @@
           // Then dynamicaly generates buttons for each movie in the array
           // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
           var a = $("<button>");
-          // Adds a class of movie to our button
+          // Adds a class to our button
           a.addClass("animal");
           // Added a data-attribute
           a.attr("data-name",animals[i]);
@@ -71,17 +74,32 @@
 
        $("#add").on("click", function(event) {
         event.preventDefault();
-        // This line of code will grab the input from the textbox
+        //Q:Why there is another var animal??????
         var animal = $("#name-input").val().trim();
-        // The movie from the textbox is then added to our array
+        
         animals.push(animal);
-        // Calling renderButtons which handles the processing of our movie array
+    
         renderButtons();
       });
       // Adding click event listeners to all elements with a class of "movie"
       $(document).on("click", ".animal", displayGifs);
       // Calling the renderButtons function to display the intial buttons
       renderButtons();
+
+//----animation
+     $(document).on("click", ".gifs", function(){
+	var state = $(this).attr('data-state');
+		if ( state == 'still'){
+			//attr the animating url
+                $(this).attr('src', $(this).attr('data-animate'));
+                $(this).attr('data-state', 'animate');
+            }else{
+                $(this).attr('src', $(this).attr('data-still'));
+                $(this).attr('data-state', 'still');
+
+
+            };
+});
 
 
 
