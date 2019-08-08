@@ -1,4 +1,30 @@
 body {
+margin: 10px;
+margin-left: 20px;
+margin-right: 20px;
+}
 
+.animal,#add{
+	width: 100px;
+	height: 50px;
+	background-color: purple;
+	border-color: white;
+	font-size: 10px;
+	color: white;
+}
+#aniTags{
+	margin-bottom: 10px;
+}
+label{
+	margin-top:10px;
+	padding-top: 10px;
+	font-family: sans-serif;
+}
+
+#add{
+	height:30px;
+}
+#name-input{
+	height: 20px;
 }
 
